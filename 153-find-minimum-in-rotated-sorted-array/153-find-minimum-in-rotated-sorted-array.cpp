@@ -7,7 +7,7 @@ public:
         {
             int mid = (low + high) >> 1;
             result = min(result, nums[mid]);
-            if(nums[mid] >= nums[high])
+            if(nums[mid] > nums[high])
             {
                 low = mid + 1;
             }
