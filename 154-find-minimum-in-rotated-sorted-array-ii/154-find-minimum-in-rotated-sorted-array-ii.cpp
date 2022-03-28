@@ -13,7 +13,7 @@ public:
                 high--;
                 continue;
             }
-            if(nums[mid] > nums[high])
+            if(nums[mid] > nums[high])  //  bada he bhut hai eual wala to upar he save ho jaayega
             {
                 low = mid + 1;
             }
