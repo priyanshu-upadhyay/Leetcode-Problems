@@ -1,6 +1,9 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
+        
+        
+        // Linked List Cycle 2 question ...... n+1 index hai isliye 0 index se start kiya
         int slow = nums[0];
         int fast = nums[0];
         
