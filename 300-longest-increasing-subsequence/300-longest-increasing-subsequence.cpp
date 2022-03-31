@@ -12,7 +12,7 @@ public:
                 maxTillPoint = max(maxTillPoint, dp[j]);
             }
             
-            dp[i] = maxTillPoint + 1;
+            dp[i] = maxTillPoint + 1; 
         }
         
         
