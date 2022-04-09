@@ -6,20 +6,18 @@ public:
         {
             mp[nums[i]]++;
         }
-        vector<pair<int, int>> arr;
-        
+        priority_queue<pair<int, int>> pq;
+        vector<int> result;
         for(auto pair : mp)
         {
-            arr.push_back({pair.second, pair.first});
+            pq.push({pair.second, pair.first});
+            if(pq.size() > mp.size() - k) // usse jda hua to hum le skte h 
+            {
+                result.push_back(pq.top().second);
+                pq.pop();
+            }
         }
-        sort(arr.rbegin(), arr.rend());
         
-        vector<int> result;
-        
-        for(int i = 0; i < k; i++)
-        {
-            result.push_back(arr[i].second);
-        }
         return result;
     }
 };
