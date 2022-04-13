@@ -1,28 +1,26 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        
-        
-        // Linked List Cycle 2 question ...... n+1 index hai isliye 0 index se start kiya
-        int slow = nums[0];
-        int fast = nums[0];
-        
-        do
+        int n = nums.size();
+        int low = 0, high = n-1;
+        while(low <= high)
         {
-            slow = nums[slow];
-            fast = nums[nums[fast]];
+            int mid = (low + high) >> 1;
+            int count = 0;
+            for(int num : nums)
+            {
+                if(num <= mid) count++;
+            }
             
-        }while(slow != fast);
-        
-        int entry = nums[0];
-        
-        while(slow != entry)
-        {
-            slow = nums[slow];
-            entry = nums[entry];
+            if(count <= mid)
+            {
+                low = mid + 1;
+            }
+            else
+            {
+                high = mid - 1;
+            }
         }
-            
-        return slow;
-            
+        return low;
     }
 };
