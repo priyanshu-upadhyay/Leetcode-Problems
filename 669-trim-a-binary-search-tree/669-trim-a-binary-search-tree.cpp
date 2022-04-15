@@ -17,12 +17,12 @@ public:
         
         if(low > root->val)
         {
-            root->left = NULL;
+            // root->left = NULL;
             root = trimBST(root->right, low, high);
         }
         else if(high < root->val)
         {
-            root->right = NULL;
+            // root->right = NULL;
             root = trimBST(root->left, low, high);
         }
         else
