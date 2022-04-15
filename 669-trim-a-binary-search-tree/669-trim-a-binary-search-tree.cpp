@@ -17,7 +17,7 @@ public:
         
         if(low > root->val)
         {
-            // root->left = NULL;
+            // root->left = NULL; (Optional)
             root = trimBST(root->right, low, high);
         }
         else if(high < root->val)
