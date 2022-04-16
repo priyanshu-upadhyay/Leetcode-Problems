@@ -11,17 +11,25 @@
  */
 class Solution {
 public:
-    void convertBSTHelper(TreeNode* root, int &sum)
-    {
-        if(root == NULL) return;
-        convertBSTHelper(root->right, sum);
-        sum += root->val;
-        root->val = sum;
-        convertBSTHelper(root->left, sum);
-    }
+
     TreeNode* convertBST(TreeNode* root) {
+        
         int sum = 0;
-        convertBSTHelper(root, sum);
-        return root;
+        stack<TreeNode*> st;
+        TreeNode* head = root;
+        while(!st.empty() || root != NULL)
+        {
+            while(root != NULL)
+            {
+                st.push(root);
+                root = root->right;
+            }
+            TreeNode* rightMost = st.top();
+            st.pop();
+            sum += rightMost->val;
+            rightMost->val = sum;
+            root = rightMost->left;
+        }
+        return head;
     }
 };
