@@ -16,7 +16,7 @@ public:
         
         int sum = 0;
         stack<TreeNode*> st;
-        TreeNode* head = root;
+        TreeNode* headRoot = root;
         while(!st.empty() || root != NULL)
         {
             while(root != NULL)
@@ -30,6 +30,6 @@ public:
             rightMost->val = sum;
             root = rightMost->left;
         }
-        return head;
+        return headRoot;
     }
 };
