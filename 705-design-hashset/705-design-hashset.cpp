@@ -1,7 +1,7 @@
 class MyHashSet {
-
-public:
+private:
     vector<int> hashmap;
+public:
     MyHashSet() {
         hashmap.resize(10e6);
     }
