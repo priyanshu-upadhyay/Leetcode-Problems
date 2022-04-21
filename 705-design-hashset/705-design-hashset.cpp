@@ -1,9 +1,9 @@
 class MyHashSet {
-private:
-    int hashmap[1000001];
+
 public:
+    vector<int> hashmap;
     MyHashSet() {
-        memset(hashmap, 0, sizeof(hashmap));
+        hashmap.resize(10e6);
     }
     
     void add(int key) {
