@@ -3,7 +3,7 @@ private:
     vector<int> hashmap;
 public:
     MyHashSet() {
-        hashmap.resize(10e6);
+        hashmap.resize(10e6 + 1);
     }
     
     void add(int key) {
