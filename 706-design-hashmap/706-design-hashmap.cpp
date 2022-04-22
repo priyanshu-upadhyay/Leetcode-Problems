@@ -93,7 +93,8 @@ public:
                     {
                         curr->next->prev = curr->prev;
                     }
-                    curr->prev->next = curr->next;
+                    curr->prev->next = curr->next; //  PrevNode Next Value Change
+                    // curr->prev != NULL check islye nhi kiya kyuki aisa hoga to wo pahle node he ho skta hai 
                 }
             }
             curr = curr->next;
