@@ -3,36 +3,23 @@ private:
 
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        stack<vector<int>> st;
         sort(intervals.begin(), intervals.end());
-        for(vector<int> each_interval : intervals)
+        vector<vector<int>> result;
+        
+        result.push_back(intervals[0]);
+        
+        for(int i = 1; i < intervals.size(); i++)
         {
-            if(!st.empty())
+            if(result.back()[1] >= intervals[i][0])
             {
-                vector<int> top = st.top();
-                if(top[1] >= each_interval[0])
-                {
-                    st.pop();
-                    top[1] = max(each_interval[1], top[1]);
-                    st.push(top);
-                }
-                else
-                {
-                    st.push(each_interval);
-                }
+                result.back()[1] = max(intervals[i][1], result.back()[1]);
             }
             else
             {
-                st.push(each_interval);
+                result.push_back(intervals[i]);
             }
         }
         
-        vector<vector<int>> result;
-        while(!st.empty())
-        {
-            result.push_back(st.top());
-            st.pop();
-        }
         return result;
     }
 };
