@@ -19,13 +19,26 @@ public:
         while(!q.empty() && root!=NULL)
         {
             int size = q.size();
-            vector<int> subArray;
+            vector<int> subArray(size);
             
             for(int i = 0; i < size; i++)
             {
                 TreeNode* front = q.front();
                 q.pop();
-                subArray.push_back(front->val);
+                int index;
+                if(alter%2)
+                {
+                    index = i;
+                }
+                else
+                {
+                    index = size - 1 - i;
+                }
+                
+                
+                subArray[index] = front->val;
+                
+                
                 if(front->left != NULL)
                 {
                     q.push(front->left);
@@ -34,10 +47,6 @@ public:
                 {
                     q.push(front->right);
                 }
-            }
-            if(alter%2 == 0)
-            {
-                reverse(subArray.begin(), subArray.end());
             }
             result.push_back(subArray);
             alter++;
