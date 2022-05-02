@@ -21,7 +21,11 @@ public:
         {
             c++;
             curr = curr->next;
-            if(c == k) isPossible = true;
+            if(c == k)
+            {
+                isPossible = true;
+                break;
+            }
         }
         
         if(isPossible)
