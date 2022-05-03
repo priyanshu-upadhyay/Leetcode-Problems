@@ -9,12 +9,8 @@ public:
                 if(start == -1)
                 {
                     start = i - 1;
-                    end = i;
                 }
-                else
-                {
-                    end = i;
-                }
+                 end = i;
                 swap(nums[i-1], nums[i]);
             }
         }
@@ -25,13 +21,9 @@ public:
             {
                 if(start1 == -1)
                 {
-                    start1 = i - 1;
                     end1 = i;
                 }
-                else
-                {
-                    start1 = i - 1;
-                }
+                 start1 = i - 1;
                 swap(nums[i-1], nums[i]);
             }
         }
