@@ -16,16 +16,15 @@ class Solution {
         {
             int front = q.front();
             q.pop();
-            if(visited[front] == 0)
+            result.push_back(front);
+            for(int element : adj[front])
             {
-                visited[front] = 1;
-                result.push_back(front);
-                for(int element : adj[front])
+                if(visited[element] == 0)
                 {
                     q.push(element);
+                    visited[element] = 1;
                 }
             }
-            
         }
         return result;
     }
