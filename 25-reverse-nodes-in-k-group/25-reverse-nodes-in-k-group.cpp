@@ -21,7 +21,7 @@ public:
         {
             c++;
             curr = curr->next;
-            if(c == k)
+            if(c == k) // ye andar h islye
             {
                 isPossible = true;
                 break;
