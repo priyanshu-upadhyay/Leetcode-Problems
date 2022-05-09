@@ -12,6 +12,7 @@ class Solution {
         vector<int> visited(V,0);
         vector<int> result;
         q.push(0);
+        visited[0] = 1;
         while(!q.empty())
         {
             int front = q.front();
