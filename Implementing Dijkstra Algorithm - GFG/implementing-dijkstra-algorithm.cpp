@@ -5,29 +5,28 @@ using namespace std;
  // } Driver Code Ends
 class Solution
 {
+    typedef pair<int, int> pi;
 	public:
 	//Function to find the shortest distance of all the vertices
     //from the source vertex S.
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
         vector<bool> visited(V, false);
-        vector<int> distance(V, INT_MAX);
-        distance[S] = 0;
-        for(int edge = 0; edge < V; edge++)
+        vector<int> distance(V, 0);
+        priority_queue<pi, vector<pi>, greater<pi> > pq;
+        pq.push({0, S});
+        while(!pq.empty())
         {
-            int minIndex = -1;
-            for(int i = 0; i < V; i++)
+            pair<int, int> top = pq.top();
+            pq.pop();
+            if(visited[top.second] == false)
             {
-                if(!visited[i] && (minIndex == -1 || distance[i] < distance[minIndex]))
+                visited[top.second] = true;
+                distance[top.second] = top.first;
+                for(vector<int> edge : adj[top.second])
                 {
-                    minIndex = i;
+                    pq.push({top.first + edge[1], edge[0]});
                 }
-            }
-            visited[minIndex] = true;
-            
-            for(vector<int> edges_weight : adj[minIndex])
-            {
-                distance[edges_weight[0]] = min(distance[edges_weight[0]], distance[minIndex] + edges_weight[1]);
             }
         }
         return distance;
