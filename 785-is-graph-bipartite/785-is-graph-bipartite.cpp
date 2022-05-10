@@ -1,80 +1,41 @@
 class Solution {
 public:
     bool isBipartite(vector<vector<int>>& graph) {
+        int n = graph.size();
         
-        set<int> a, b;
+        vector<int> color(n, 0);
         
-        queue<pair<int, int>> q;
-        q.push(make_pair(0,0));
-        vector<int> visited(graph.size());
-        while(!q.empty())
+        /*
+            0 =>    uncolored
+            1 =>    colored
+            -1 =>   opp. colored
+        */
+        queue<int> q;
+        for(int i = 0; i < n; i++)
         {
-            auto p = q.front();
-            q.pop();
-            if(!visited[p.first])
+            if(color[i]) continue;
+            q.push(i);
+            color[i] = 1;
+            while(!q.empty())
             {
-                for(int i = 0; i < graph[p.first].size(); i++)
+                int front = q.front();
+                for(int element : graph[front])
                 {
-                    if(p.second == 0)
+                    if(!color[element])
                     {
-                        b.insert(graph[p.first][i]);
-                        q.push(make_pair(graph[p.first][i],1));
+                        color[element] = -color[front];
+                        q.push(element);
                     }
-                    else
+                    else if(color[element] == color[front])
                     {
-                        a.insert(graph[p.first][i]);
-                        q.push(make_pair(graph[p.first][i],0));
+                        return false;
                     }
                 }
-                visited[p.first] = 1;
+                q.pop();
             }
             
         }
-        
-        for(int i = 0; i < graph.size(); i++)
-        {
-            if(!visited[i])
-            {
-                if(a.find(i) != a.end())
-                {
-                    for(int j = 0; j < graph[i].size(); j++)
-                    {
-                        b.insert(graph[i][j]);
-                    }
-                }
-                else if(b.find(i) != b.end())
-                {
-                    for(int j = 0; j < graph[i].size(); j++)
-                    {
-                        a.insert(graph[i][j]);
-                    }
-                }
-                else
-                {
-                    a.insert(i);
-                    for(int j = 0; j < graph[i].size(); j++)
-                    {
-                        b.insert(graph[i][j]);
-                    }
-                }
-
-                visited[i] = 1;
-                }
-        }
-        
-        if((a.size()+b.size()) <= graph.size())
-        {
-            return true;
-        }
-        return false;
-        
-        
-        
-        
-        
-        
-        
-        
+        return true;
         
     }
 };
