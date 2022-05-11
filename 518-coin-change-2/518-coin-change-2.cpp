@@ -5,11 +5,13 @@ private:
         if(amount == 0) return 1;
         if(n == 0 || amount < 0) return 0;
         if(dp[n][amount] != -1) return dp[n][amount];
+        int notTake = coinChangeHelper(n - 1, amount, coins, dp);
         if(amount >= coins[n-1])
         {
-            return dp[n][amount] = coinChangeHelper(n, amount - coins[n-1], coins, dp) +  coinChangeHelper(n - 1, amount, coins, dp);
+            int take = coinChangeHelper(n, amount - coins[n-1], coins, dp);
+            return dp[n][amount] = take + notTake;
         }
-        return dp[n][amount] = coinChangeHelper(n - 1, amount, coins, dp);
+        return dp[n][amount] = notTake;
     }
 public:
     int change(int amount, vector<int>& coins) {
