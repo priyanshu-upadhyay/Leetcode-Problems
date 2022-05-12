@@ -127,19 +127,21 @@ struct Node
  */
 
 //Function to return a list containing elements of left view of the binary tree.
-void left(Node* root, vector<int> &result, int level)
+void left(Node* root, int& maxLevel,  int level)
 {
     if(root == NULL) return;
-    if(level == result.size()) // 0 level 0 size ka funda
+    if(level == maxLevel) // 0 level 0 size ka funda
     {
-        result.push_back(root->data);
+        cout<<root->data<<" ";
+        maxLevel++;
     }
-    left(root->left, result, level + 1);
-    left(root->right, result, level + 1);
+    left(root->left, maxLevel, level + 1);
+    left(root->right, maxLevel, level + 1);
 }
 vector<int> leftView(Node *root)
 {
    vector<int> result;
-   left(root, result, 0);
+   int maxLevel = 0;
+   left(root, maxLevel, 0);
    return result;
 }
