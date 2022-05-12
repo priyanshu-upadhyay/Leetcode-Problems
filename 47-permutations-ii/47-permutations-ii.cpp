@@ -1,10 +1,10 @@
 class Solution {
 private:
-    void genrateCombinations(vector<int>& nums, vector<int>& temp, vector<vector<int>>& result)
+    void genrateCombinations(vector<int>& nums, vector<int>& temp, set<vector<int>>& result)
     {
         if(nums.size() == 0)
         {
-            result.push_back(temp);
+            result.insert(temp);
             return;
         }
         int n = nums.size();
@@ -20,11 +20,10 @@ private:
     }
 public:
     vector<vector<int>> permuteUnique(vector<int>& nums) {
-        vector<vector<int>> result;
+        set<vector<int>> setResult;
         vector<int> temp;
-        genrateCombinations(nums, temp, result);
-        set<vector<int>> st(result.begin(), result.end());
-        vector<vector<int>> newRes (st.begin(), st.end());
-        return newRes;
+        genrateCombinations(nums, temp, setResult);
+        vector<vector<int>> result (setResult.begin(), setResult.end());
+        return result;
     }
 };
