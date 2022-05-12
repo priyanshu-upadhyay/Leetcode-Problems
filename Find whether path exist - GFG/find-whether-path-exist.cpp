@@ -17,7 +17,7 @@ class Solution
     }
     public:
     //Function to find whether a path exists from the source to destination.
-    bool is_Possible(vector<vector<int>> grid) 
+    bool is_Possible(vector<vector<int>>& grid) 
     {
         int n = grid.size(), m = grid[0].size();
         for(int i = 0; i < n; i++)
