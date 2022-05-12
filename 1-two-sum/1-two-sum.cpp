@@ -7,7 +7,7 @@ public:
             int toFind = target - nums[i];
             if(mp.find(toFind) != mp.end())
             {
-                return {mp[toFind], i};
+                return {i, mp[toFind]};
             }
             mp[nums[i]] = i;
         }
