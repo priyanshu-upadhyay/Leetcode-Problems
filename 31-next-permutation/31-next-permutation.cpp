@@ -1,35 +1,35 @@
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
-        int n = nums.size(), break_index;
         
+        int n = nums.size();
+        int break_point = - 1;
         for(int i = n - 2; i >= 0; i--)
         {
-            if(nums[i] < nums[i+1])
+            if(nums[i] < nums[i + 1])
             {
-                break_index = i;
+                break_point = i;
                 break;
             }
         }
         
-        if(break_index < 0)   //  That means koi break point nhi pura mamla he reverse kro
+        if(break_point == -1)
         {
             reverse(nums.begin(), nums.end());
         }
         else
         {
-            int next_greater;
+            int greater_point;
             for(int i = n - 1; i >= 0; i--)
             {
-                if(nums[i] > nums[break_index])
+                if(nums[i] > nums[break_point])
                 {
-                    next_greater = i;
+                    greater_point = i;
                     break;
                 }
-                
             }
-            swap(nums[next_greater], nums[break_index]);
-            reverse(nums.begin() + break_index + 1, nums.end());
+            swap(nums[break_point], nums[greater_point]);
+            reverse(nums.begin() + break_point + 1, nums.end());
         }
     }
 };
