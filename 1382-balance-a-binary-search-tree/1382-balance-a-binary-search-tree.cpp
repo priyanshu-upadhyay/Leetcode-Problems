@@ -34,7 +34,7 @@ public:
             }
             TreeNode* top = st.top();
             st.pop();
-            arr.push_back(top->val);
+            arr.emplace_back(top->val);
             root = top->right;
         }
         int size = arr.size();
