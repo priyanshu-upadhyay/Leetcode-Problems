@@ -4,33 +4,35 @@ using namespace std;
 
  // } Driver Code Ends
 class Solution {
-    private:
-        bool checkCycle(int node, int parent, vector<int>& visited, vector<int> adj[])
-        {
-            visited[node] = 1;
-            for(int element : adj[node])
-            {
-                if(visited[element] == 0)
-                {
-                    if(checkCycle(element, node, visited, adj)) return true;
-                }
-                else if(parent != element)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+  private:
+  bool checkCycle(int start, int parent, vector<int> adj[], vector<bool>& visited)
+  {
+      visited[start] = true;
+      for(int node : adj[start])
+      {
+          if(visited[node] == false)
+          {
+              bool hasCycle = checkCycle(node, start, adj, visited);
+              if(hasCycle) return true;
+          }
+          else if(node != parent)
+          {
+              return true;
+          }
+      }
+      return false;
+  }
   public:
     // Function to detect cycle in an undirected graph.
     bool isCycle(int V, vector<int> adj[]) {
         
-        vector<int> visited(V);
+        vector<bool> visited(V, false);
         for(int i = 0; i < V; i++)
         {
-            if(visited[i] == 0)
+            if(visited[i] == false)
             {
-                if(checkCycle(i, -1, visited, adj)) return true;
+                bool hasCycle = checkCycle(i, -1, adj, visited);
+                if(hasCycle) return true;
             }
         }
         return false;
