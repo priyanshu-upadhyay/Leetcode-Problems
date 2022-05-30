@@ -2,24 +2,25 @@ class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         int n = matrix.size(), m = matrix[0].size();
-        int start = 0, end = n * m - 1;
+        int low = 0, high = n*m - 1;
         
-        while(start <= end)
+        while(low <= high)
         {
-            int mid = (start + end) >> 1;
-            int row = mid / m, column = mid % m;
-            if(matrix[row][column] == target)
+            int mid = (low + high) >> 1;
+            
+            int i = mid / m, j = mid % m;    
+            // Col me kitni dept h usse farak padta hai row se nhi kyuki wo total to humne pahle he nikal liya h .... division se konse row ka tukda hai and % se use row me kaha h wo....
+            if(matrix[i][j] == target)
             {
                 return true;
             }
-            
-            if(matrix[row][column] > target)
+            else if(matrix[i][j] > target)
             {
-                end = mid - 1;
+                high = mid - 1;
             }
             else
             {
-                start = mid + 1;
+                low = mid + 1;
             }
         }
         return false;
