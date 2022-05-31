@@ -19,7 +19,7 @@ public:
         auto itr = find(inorder.begin(), inorder.end(), num);
         preorder.erase(preorder.begin()); // removing first element
         
-        vector<int> leftPart(inorder.begin(), itr);
+        vector<int> leftPart(inorder.begin(), itr);      // ek kum tak he chalta h islye itr-- ki need nhi hai
         vector<int> rightPart(itr + 1, inorder.end());
         
         root->left = buildTree(preorder, leftPart);
