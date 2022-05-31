@@ -16,9 +16,8 @@ public:
                 maxFreqChar = s[i];
             }
         }
-        
-        // cout<<maxFreq<<"\n";
-        if(maxFreq > (n+1)/2 ) 
+
+        if(maxFreq > (n+1)/2)         // odd hoga to dikkat aayegi islye... || आधे से ज्यदा हुआ तो नहीं Possible है 
         {
             return "";
         }
@@ -36,8 +35,6 @@ public:
         
         for(int j = 0; j < n; j++)
         {
-            
-            
             while(freq[s[j] - 'a'] > 0)
             {
                 if(i >= n) i = 1;
@@ -47,7 +44,5 @@ public:
             }
         }
         return result;
-        
-        
     }
 };
