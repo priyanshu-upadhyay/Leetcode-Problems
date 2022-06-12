@@ -1,0 +1,1 @@
+Is Current index se pahle wale bhi to dekhne h bhai
