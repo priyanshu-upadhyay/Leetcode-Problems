@@ -12,8 +12,8 @@
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
-        vector<int> result;
         stack<TreeNode*> st;
+        vector<int> result;
         while(!st.empty() || root != NULL)
         {
             while(root != NULL)
@@ -22,9 +22,10 @@ public:
                 result.push_back(root->val);
                 root = root->right;
             }
-            TreeNode* rightMost = st.top();
+            
+            TreeNode* top = st.top();
             st.pop();
-            root = rightMost->left;
+            root = top->left;
         }
         reverse(result.begin(), result.end());
         return result;
